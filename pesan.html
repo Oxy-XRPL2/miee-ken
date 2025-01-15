@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formulir Checkout Responsif</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="pesan.css">
+</head>
+<body>
+<h2>Formulir Pemesanan</h2>
+<div class="row">
+  <div class="col-75">
+    <div class="container">
+      <form action="">
+
+        <div class="row">
+          <div class="col-50">
+            <h3>Alamat Penagihan</h3>
+            <label for="fname"><i class="fa fa-user"></i> Nama Lengkap</label>
+            <input type="text" id="fname" name="firstname" placeholder="e.g. john doe">
+            <label for="email"><i class="fa fa-envelope"></i> Email</label>
+            <input type="text" id="email" name="email" placeholder="e.g. oxy@gmail.com">
+            <label for="adr"><i class="fa fa-address-card-o"></i> Alamat</label>
+            <input type="text" id="adr" name="address" placeholder="e.g. Jl.Sudirman No.27">
+            <label for="city"><i class="fa fa-institution"></i> Kota</label>
+            <input type="text" id="city" name="city" placeholder="e.g. Semarang">
+
+            <div class="row">
+              <div class="col-50">
+                <label for="state">Provinsi</label>
+                <input type="text" id="state" name="state" placeholder="e.g. Jawa Tengah">
+              </div>
+              <div class="col-50">
+                <label for="zip">Kode Pos</label>
+                <input type="text" id="zip" name="zip" placeholder="e.g. 40000">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-50">
+            <h3>Pembayaran</h3>
+            <label for="fname">Kartu yang Diterima</label>
+            <div class="icon-container">
+              <i class="fa fa-cc-amex" style="color:blue;"></i>
+              <i class="fa fa-cc-mastercard" style="color:red;"></i>
+              <i class="fa fa-cc-discover" style="color:orange;"></i>
+            </div>
+            <label for="cname">Nama pada Kartu</label>
+            <input type="text" id="cname" name="cardname" placeholder="e.g. John Doe">
+            <label for="ccnum">Nomor Kartu Kredit</label>
+            <input type="text" id="ccnum" name="cardnumber" placeholder="e.g. 0001-0002-0003">
+          </div>
+
+        </div>
+        <label>
+          <input type="checkbox" checked="checked" name="sameadr"> Alamat pengiriman sama dengan penagihan
+        </label>
+        <input type="submit" value="Lanjutkan ke pembayaran" class="btn">
+      </form>
+    </div>
+  </div>
+  <div class="col-25">
+    <div class="container">
+      <h4>Keranjang <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i></span></h4>
+      <table>
+        <tr>
+          <th>Barang</th>
+          <th>Harga</th>
+          <th>Jumlah</th>
+          <th>Total</th>
+        </tr>
+        <tr>
+          <td><a href="#">Miee Ken setan</a></td>
+          <td class="harga">Rp.10.000</td>
+          <td><input type="number" value="1" onchange="hitungTotal()" min="1" max="10"></td>
+          <td class="totalBarang">Rp.10.000</td>
+        </tr>
+        <tr>
+          <td><a href="#">Miee Ken Iblis</a></td>
+          <td class="harga">Rp.12.000</td>
+          <td><input type="number" value="1" onchange="hitungTotal()" min="1" max="10"></td>
+          <td class="totalBarang">Rp.12.000</td>
+        </tr>
+        <tr>
+          <td><a href="#">Es Teh</a></td>
+          <td class="harga">Rp.5.000</td>
+          <td><input type="number" value="1" onchange="hitungTotal()" min="1" max="10"></td>
+          <td class="totalBarang">Rp.5.000</td>
+        </tr>
+        <tr>
+          <td><a href="#">Lemon Tea</a></td>
+          <td class="harga">Rp8.000</td>
+          <td><input type="number" value="1" onchange="hitungTotal()" min="1" max="10"></td>
+          <td class="totalBarang">Rp.8.000</td>
+        </tr>
+        <tr>
+          <td colspan="3">Total</td>
+          <td id="totalHarga">Rp.38.000</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+function hitungTotal() {
+  var hargaBarang = [10000, 12000, 5000, 8000]; // Harga per barang
+  var totalHargaBarang = [0, 0, 0, 0];
+  var inputBarang = document.querySelectorAll('input[type="number"]');
+  var hargaElement = document.querySelectorAll('.harga');
+  var totalBarangElement = document.querySelectorAll('.totalBarang');
+  var totalHarga = document.getElementById('totalHarga');
+
+  inputBarang.forEach(function(input, index) {
+    totalHargaBarang[index] = parseInt(input.value) * hargaBarang[index];
+    totalBarangElement[index].textContent = "Rp." + totalHargaBarang[index].toLocaleString();
+  });
+
+  var totalHargaSemuaBarang = totalHargaBarang.reduce((a, b) => a + b, 0);
+  totalHarga.textContent = "Rp." + totalHargaSemuaBarang.toLocaleString();
+}
+</script>
+
+</body>
+</html>
